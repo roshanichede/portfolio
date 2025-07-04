@@ -5,6 +5,7 @@
 export const portfolioConfig = {
     // Projects to include in portfolio (by exact project name from Vercel)
     includedProjects: [
+        ""
         // Add your project names here
     ],
 

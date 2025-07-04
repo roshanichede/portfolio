@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server"
+import { z } from "zod"
 
 export async function POST(request: Request) {
     try {
@@ -15,13 +16,38 @@ export async function POST(request: Request) {
         if (!emailRegex.test(email)) {
             return NextResponse.json({ error: "Invalid email format", success: false }, { status: 400 })
         }
+        // n8n webhook
+        try {
+        const resp = await fetch(process.env.N8N_WEBHOOK_URL!, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, message }),
+        })
+        if (!resp.ok) {
+            console.error('n8n webhook error', await resp.text())
+            return NextResponse.json(
+                { success: false, error: 'Failed to forward message' },
+                { status: 502 },
+            )
+          }
+        return NextResponse.json({
+            success: true,
+            message: "Your note just hit my inbox! I’ll be in touch soon.",
+        }) 
+    } catch (err) {
+        if (err instanceof z.ZodError) {
+            return NextResponse.json(
+                { success: false, errors: err.errors },
+                { status: 400 },
+            )
+        }
+        console.error('Unexpected error', err)
+        return NextResponse.json(
+            { success: false, error: 'Server error' },
+            { status: 500 },
+        )
+        }
 
-        // Here you would typically:
-        // 1. Send email via service like Resend, SendGrid, or Nodemailer
-        // 2. Save to database
-        // 3. Send to webhook/notification service
-
-        // For now, we'll just log it and return success
         console.log("Contact form submission:", {
             name,
             email,
