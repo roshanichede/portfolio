@@ -79,7 +79,7 @@ export function Contact() {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <h2
-            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-black mb-12 text-center transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-black dark:text-white mb-12 text-center transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
               }`}
           >
             Let's Work Together
@@ -88,7 +88,7 @@ export function Contact() {
           <div className="flex flex-col items-center space-y-8">
             {/* Contact Form */}
             <div
-              className={`w-full max-w-2xl bg-white p-6 lg:p-8 border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-1 hover:-translate-y-1 transition-all duration-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+              className={`w-full max-w-2xl bg-white dark:bg-zinc-900 p-6 lg:p-8 border-4 border-black dark:border-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] hover:shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[10px_10px_0px_0px_rgba(255,255,255,1)] hover:-translate-x-1 hover:-translate-y-1 transition-all duration-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 }`}
               style={{ transitionDelay: "200ms" }}
             >
@@ -100,7 +100,7 @@ export function Contact() {
                   placeholder="Your Name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="border-2 border-black font-medium placeholder:text-gray-500 focus:ring-0 focus:border-black hover:scale-105 transition-transform duration-200"
+                  className="border-2 border-black dark:border-white font-medium placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:ring-0 focus:border-black dark:focus:border-white hover:scale-105 transition-transform duration-200 bg-white dark:bg-zinc-800 text-black dark:text-white"
                   required
                 />
                 <Input
@@ -109,7 +109,7 @@ export function Contact() {
                   placeholder="Your Email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="border-2 border-black font-medium placeholder:text-gray-500 focus:ring-0 focus:border-black hover:scale-105 transition-transform duration-200"
+                  className="border-2 border-black dark:border_white font-medium placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:ring-0 focus:border-black dark:focus:border_white hover:scale-105 transition-transform duration-200 bg-white dark:bg-zinc-800 text-black dark:text-white"
                   required
                 />
                 <textarea
@@ -118,13 +118,13 @@ export function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   rows={4}
-                  className="w-full p-3 border-2 border-black font-medium placeholder:text-gray-500 focus:ring-0 focus:border-black resize-none hover:scale-105 transition-transform duration-200"
+                  className="w-full p-3 border-2 border-black dark:border-white font-medium placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:ring-0 focus:border-black dark:focus:border-white resize-none hover:scale-105 transition-transform duration-200 bg-white dark:bg-zinc-800 text-black dark:text-white"
                   required
                 />
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-green-400 text-black font-bold py-4 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-green-400 text-black font-bold py-4 border-4 border-black dark:border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Send className="mr-2" size={20} />
                   {isSubmitting ? "Sending..." : "Send Message"}
@@ -151,7 +151,7 @@ export function Contact() {
               <Button
                 variant="ghost"
                 size="lg"
-                className="text-black hover:bg-black hover:text-white p-3 border-2 border-black hover:scale-110 transition-all duration-200"
+                className="text-black dark:text-white hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black p-3 border-2 border-black dark:border-white hover:scale-110 transition-all duration-200"
                 onClick={() => window.open("https://linkedin.com/in/roshanichede", "_blank")}
               >
                 <Linkedin size={28} />
@@ -167,7 +167,7 @@ export function Contact() {
               <Button
                 variant="ghost"
                 size="lg"
-                className="text-black hover:bg-black hover:text-white p-3 border-2 border-black hover:scale-110 transition-all duration-200"
+                className="text-black dark:text-white hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black p-3 border-2 border-black dark:border-white hover:scale-110 transition-all duration-200"
                 onClick={() => window.open("mailto:chederoshani@gmail.com", "_blank")}
               >
                 <Mail size={28} />
@@ -179,7 +179,7 @@ export function Contact() {
                 }`}
               style={{ transitionDelay: "600ms" }}
             >
-              <p className="text-lg">Got a vision? Let’s fuse code and creativity, Let's connect!</p>
+              <p className="text-lg text-gray-600 dark:text-gray-300">Got a vision? Let’s fuse code and creativity, Let's connect!</p>
             </div>
           </div>
         </div>

@@ -38,13 +38,13 @@ export function Projects() {
   }
 
   return (
-    <section ref={sectionRef} id="projects" className="py-12 lg:py-16 bg-white">
+    <section ref={sectionRef} id="projects" className="py-12 lg:py-16 bg-white dark:bg-zinc-950">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-8">
             <h2
-              className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-black mb-4 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+              className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-black dark:text-white mb-4 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 }`}
             >
               Projects
@@ -53,17 +53,17 @@ export function Projects() {
             {/* Error State */}
             {error && (
               <div
-                className={`bg-red-100 border-4 border-red-500 p-6 mb-8 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                className={`bg-red-100 dark:bg-red-900/30 border-4 border-red-500 dark:border-red-400 p-6 mb-8 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                   }`}
                 style={{ transitionDelay: "300ms" }}
               >
                 <div className="flex items-center gap-3 mb-3">
-                  <AlertTriangle className="w-6 h-6 text-red-600" />
-                  <h3 className="text-lg font-bold text-red-800">Unable to Load Projects</h3>
+                  <AlertTriangle className="w-6 h-6 text-red-600 dark:text-red-300" />
+                  <h3 className="text-lg font-bold text-red-800 dark:text-red-200">Unable to Load Projects</h3>
                 </div>
-                <p className="text-red-700 mb-4">{error}</p>
+                <p className="text-red-700 dark:text-red-300 mb-4">{error}</p>
                 {error.includes("token") && (
-                  <div className="bg-red-200 border-2 border-red-400 p-4 mb-4 text-sm">
+                  <div className="bg-red-200 dark:bg-red-900/40 border-2 border-red-400 dark:border-red-300 p-4 mb-4 text-sm">
                     <p className="font-semibold mb-2">To display your real Vercel projects:</p>
                     <ol className="list-decimal list-inside space-y-1 text-red-800">
                       <li>Go to Vercel Dashboard → Settings → Tokens</li>

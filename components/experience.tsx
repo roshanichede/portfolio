@@ -226,7 +226,7 @@ export function Experience() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2
-              className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-black mb-4 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+              className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-black dark:text-white mb-4 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 }`}
             >
               Professional Experience
@@ -241,15 +241,15 @@ export function Experience() {
                   }`}
                 style={{ transitionDelay: `${expIndex * 200}ms` }}
               >
-                <div className="bg-white p-4 sm:p-6 border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-1 hover:-translate-y-1 transition-all duration-300 group">
+                <div className="bg-white dark:bg-zinc-900 p-4 sm:p-6 border-4 border-black dark:border-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] hover:shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[10px_10px_0px_0px_rgba(255,255,255,1)] hover:-translate-x-1 hover:-translate-y-1 transition-all duration-300 group">
                   <div className="flex flex-col sm:flex-row sm:items-start gap-4">
                     <div className="flex items-center gap-3 sm:gap-4 flex-1">
                       {exp.logo}
                       <div className="flex-1">
-                        <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-black group-hover:scale-105 transition-transform duration-300">
+                        <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-black dark:text-white group-hover:scale-105 transition-transform duration-300">
                           {exp.company}
                         </h3>
-                        <p className="text-sm sm:text-base text-gray-700 font-semibold">{exp.title}</p>
+                        <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 font-semibold">{exp.title}</p>
                         <div className="flex items-center gap-2 mt-1">
                           <Calendar className="w-3 h-3 sm:w-4 sm:h-4" />
                           <span className="text-xs sm:text-sm font-medium">{exp.period}</span>
@@ -286,7 +286,7 @@ export function Experience() {
                     </div>
                   </div>
 
-                  <p className="text-sm sm:text-base text-gray-700 leading-relaxed mt-4">{exp.summary}</p>
+                  <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed mt-4">{exp.summary}</p>
                 </div>
 
                 <div
@@ -296,20 +296,20 @@ export function Experience() {
                   <div className="mt-6 space-y-4">
                     {exp.roles.map((role, roleIndex) => (
                       <div key={role.id} className="ml-4 sm:ml-8">
-                        <div className="bg-blue-50 p-4 sm:p-6 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-1 hover:-translate-y-1 transition-all duration-300">
+                        <div className="bg-blue-50 dark:bg-zinc-800 p-4 sm:p-6 border-4 border-black dark:border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] hover:-translate-x-1 hover:-translate-y-1 transition-all duration-300">
                           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3">
                             <div className="flex-1">
-                              <h4 className="text-base sm:text-lg font-bold text-black mb-2">{role.title}</h4>
-                              <div className="bg-green-400 text-black font-bold px-2 sm:px-3 py-1 border-2 border-black mb-3 inline-block text-xs sm:text-sm">
+                              <h4 className="text-base sm:text-lg font-bold text-black dark:text-white mb-2">{role.title}</h4>
+                              <div className="bg-green-400 text-black font-bold px-2 sm:px-3 py-1 border-2 border-black dark:border-white mb-3 inline-block text-xs sm:text-sm">
                                 {role.period}
                               </div>
-                              <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-3">{role.summary}</p>
+                              <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-3">{role.summary}</p>
 
                               <div className="flex flex-wrap gap-1 sm:gap-2 mb-3">
                                 {role.technologies.map((tech) => (
                                   <span
                                     key={tech}
-                                    className="bg-white text-black px-2 sm:px-3 py-1 text-xs sm:text-sm font-semibold border border-black hover:scale-105 transition-all duration-200 cursor-default"
+                                    className="bg-white dark:bg-zinc-900 text-black dark:text-white px-2 sm:px-3 py-1 text-xs sm:text-sm font-semibold border border-black dark:border-white hover:scale-105 transition-all duration-200 cursor-default"
                                   >
                                     {tech}
                                   </span>
@@ -320,7 +320,7 @@ export function Experience() {
                             <Button
                               onClick={() => toggleRoleExpansion(role.id)}
                               size="sm"
-                              className="bg-yellow-400 text-black font-semibold border-2 border-black hover:bg-yellow-500 hover:scale-105 transition-all duration-200 text-xs sm:text-sm self-start"
+                              className="bg-yellow-400 text-black font-semibold border-2 border-black dark:border-white hover:bg-yellow-500 hover:scale-105 transition-all duration-200 text-xs sm:text-sm self-start"
                             >
                               {expandedRoles.has(role.id) ? (
                                 <>
@@ -340,18 +340,18 @@ export function Experience() {
                             className={`transition-all duration-300 overflow-hidden ${expandedRoles.has(role.id) ? "max-h-[1000px] opacity-100 mt-4" : "max-h-0 opacity-0"
                               }`}
                           >
-                            <div className="border-t-2 border-black pt-4">
-                              <h5 className="text-sm sm:text-base font-bold text-black mb-3">Key Projects:</h5>
+                            <div className="border-t-2 border-black dark:border-white pt-4">
+                              <h5 className="text-sm sm:text-base font-bold text-black dark:text-white mb-3">Key Projects:</h5>
                               <div className="space-y-3">
                                 {role.projects.map((project, projectIndex) => (
                                   <div key={projectIndex} className="border-l-4 border-black pl-3 sm:pl-4">
                                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2 gap-2">
-                                      <h6 className="font-bold text-black text-sm sm:text-base">{project.name}</h6>
-                                      <span className="bg-red-400 text-black px-2 py-1 text-xs font-bold border border-black self-start">
+                                      <h6 className="font-bold text-black dark:text-white text-sm sm:text-base">{project.name}</h6>
+                                      <span className="bg-red-400 text-black px-2 py-1 text-xs font-bold border border-black dark:border-white self-start">
                                         {project.duration}
                                       </span>
                                     </div>
-                                    <p className="text-gray-700 text-xs sm:text-sm leading-relaxed">
+                                    <p className="text-gray-700 dark:text-gray-300 text-xs sm:text-sm leading-relaxed">
                                       {project.description}
                                     </p>
                                   </div>
@@ -372,14 +372,14 @@ export function Experience() {
 
       {/* Enhanced Certificates Modal */}
       {selectedCertificates && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[200] p-2 sm:p-4">
-          <div className="bg-white border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] w-full max-w-7xl max-h-[95vh] overflow-hidden flex flex-col">
-            <div className="flex justify-between items-center p-4 sm:p-6 border-b-4 border-black">
+        <div className="fixed inset-0 bg-black/60 dark:bg-black/80 flex items-center justify-center z-[200] p-2 sm:p-4">
+          <div className="bg-white dark:bg-zinc-950 border-4 border-black dark:border-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] w-full max-w-7xl max-h-[95vh] overflow-hidden flex flex-col">
+            <div className="flex justify-between items-center p-4 sm:p-6 border-b-4 border-black dark:border-white">
               <h3 className="text-lg sm:text-2xl font-bold">Certificates & Awards</h3>
               <Button
                 onClick={closeCertificates}
                 variant="ghost"
-                className="text-black hover:bg-black hover:text-white border-2 border-black p-2"
+                className="text-black dark:text-white hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black border-2 border-black dark:border-white p-2"
               >
                 <X className="w-4 h-4" />
               </Button>
@@ -389,13 +389,13 @@ export function Experience() {
               {selectedPdf ? (
                 /* Enhanced PDF Viewer */
                 <div className="h-full flex flex-col">
-                  <div className="p-4 border-b-2 border-black flex justify-between items-center">
+                  <div className="p-4 border-b-2 border-black dark:border-white flex justify-between items-center">
                     <h4 className="font-bold">Certificate PDF</h4>
                     <div className="flex gap-2">
                       <Button
                         onClick={() => window.open(selectedPdf, "_blank")}
                         size="sm"
-                        className="bg-green-400 text-black border-2 border-black hover:bg-green-500"
+                        className="bg-green-400 text-black border-2 border-black dark:border-white hover:bg-green-500"
                       >
                         <Maximize2 className="w-4 h-4 mr-2" />
                         Open Full Size
@@ -403,14 +403,14 @@ export function Experience() {
                       <Button
                         onClick={() => setSelectedPdf(null)}
                         size="sm"
-                        className="bg-gray-200 text-black border-2 border-black hover:bg-gray-300"
+                        className="bg-gray-200 dark:bg-zinc-800 text-black dark:text-white border-2 border-black dark:border-white hover:bg-gray-300 dark:hover:bg-zinc-700"
                       >
                         ← Back to Grid
                       </Button>
                     </div>
                   </div>
                   <div className="flex-1 p-2 sm:p-4">
-                    <div className="w-full h-full min-h-[70vh] border-2 border-black">
+                    <div className="w-full h-full min-h-[70vh] border-2 border-black dark:border-white">
                       <iframe
                         src={selectedPdf}
                         className="w-full h-full"
@@ -423,12 +423,12 @@ export function Experience() {
               ) : expandedImage ? (
                 /* Expanded Image Viewer */
                 <div className="h-full flex flex-col">
-                  <div className="p-4 border-b-2 border-black flex justify-between items-center">
+                  <div className="p-4 border-b-2 border-black dark:border-white flex justify-between items-center">
                     <h4 className="font-bold">Certificate Image</h4>
                     <Button
                       onClick={() => setExpandedImage(null)}
                       size="sm"
-                      className="bg-gray-200 text-black border-2 border-black hover:bg-gray-300"
+                      className="bg-gray-200 dark:bg-zinc-800 text-black dark:text-white border-2 border-black dark:border-white hover:bg-gray-300 dark:hover:bg-zinc-700"
                     >
                       ← Back to Grid
                     </Button>
@@ -437,7 +437,7 @@ export function Experience() {
                     <img
                       src={expandedImage || "/placeholder.svg"}
                       alt="Certificate"
-                      className="max-w-full max-h-full object-contain border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+                      className="max-w-full max-h-full object-contain border-4 border-black dark:border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]"
                     />
                   </div>
                 </div>
@@ -446,14 +446,14 @@ export function Experience() {
                 <div className="p-4 sm:p-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {selectedCertificates.map((cert: any, index: number) => (
-                      <div key={index} className="bg-gray-50 p-3 sm:p-4 border-2 border-black group">
+                      <div key={index} className="bg-gray-50 dark:bg-zinc-900 p-3 sm:p-4 border-2 border-black dark:border-white group">
                         <h4 className="font-bold mb-2 text-sm sm:text-base">{cert.title}</h4>
                         {cert.image && (
                           <div className="relative mb-3">
                             <img
                               src={cert.image || "/placeholder.svg"}
                               alt={cert.title}
-                              className="w-full h-24 sm:h-32 object-cover border-2 border-black cursor-pointer hover:scale-105 transition-transform duration-200"
+                              className="w-full h-24 sm:h-32 object-cover border-2 border-black dark:border-white cursor-pointer hover:scale-105 transition-transform duration-200"
                               onClick={() => setExpandedImage(cert.image)}
                             />
                             <div
@@ -468,7 +468,7 @@ export function Experience() {
                           <Button
                             onClick={() => setSelectedPdf(cert.pdf)}
                             size="sm"
-                            className="w-full bg-blue-400 text-black border-2 border-black hover:bg-blue-500 text-xs sm:text-sm"
+                            className="w-full bg-blue-400 text-black border-2 border-black dark:border-white hover:bg-blue-500 text-xs sm:text-sm"
                           >
                             <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
                             View PDF

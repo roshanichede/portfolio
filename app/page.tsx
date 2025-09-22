@@ -9,7 +9,7 @@ import { Footer } from "@/components/footer"
 
 export default function Portfolio() {
   return (
-    <div className="min-h-screen bg-gray-50 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.05)_1px,transparent_0)] bg-[length:20px_20px]">
+    <div className="min-h-screen bg-gray-50 dark:bg-zinc-950 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.05)_1px,transparent_0)] dark:bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.08)_1px,transparent_0)] bg-[length:20px_20px]">
       <Header />
       <main>
         <Hero />

@@ -15,6 +15,8 @@ export const portfolioConfig = {
         "roshani-portfolio",
         "slpp-dashboard",
         "slpp-dashboard-123",
+        "roshani-chede-portfolio",
+        "",
         // Add project names you want to hide
     ],
 

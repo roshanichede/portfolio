@@ -86,11 +86,11 @@ export function Skills() {
   }
 
   return (
-    <section ref={sectionRef} id="skills" className="py-12 lg:py-16 bg-white">
+    <section ref={sectionRef} id="skills" className="py-12 lg:py-16 bg-white dark:bg-zinc-950">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <h2
-            className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-black mb-6 lg:mb-8 text-center transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+            className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-black dark:text-white mb-6 lg:mb-8 text-center transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
               }`}
           >
             Skills & Technologies
@@ -100,29 +100,29 @@ export function Skills() {
           <div className="block lg:hidden">
             {!isMobileExpanded ? (
               <div
-                className={`bg-gradient-to-r from-blue-100 to-purple-100 p-6 border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-1 hover:-translate-y-1 transition-all duration-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                className={`bg-gradient-to-r from-blue-100 to-purple-100 dark:from-zinc-800 dark:to-zinc-900 p-6 border-4 border-black dark:border-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] hover:-translate-x-1 hover:-translate-y-1 transition-all duration-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                   }`}
               >
                 <div className="text-center space-y-4">
-                  <p className="text-base font-semibold text-gray-800 leading-relaxed">
+                  <p className="text-base font-semibold text-gray-800 dark:text-gray-200 leading-relaxed">
                     Here's a byte-sized look at my stack—
-                    <span className="font-bold text-black"> PL/SQL, .NET, C++, Next.js</span>, and more. Want the full
+                    <span className="font-bold text-black dark:text-white"> PL/SQL, .NET, C++, Next.js</span>, and more. Want the full
                     gigabyte breakdown?
                   </p>
 
                   {/* Key Skills Preview */}
                   <div className="flex flex-wrap justify-center gap-2 mb-4">
                     {[
-                      { name: "PL/SQL", color: "bg-orange-200" },
-                      { name: ".NET Core", color: "bg-green-200" },
-                      { name: "React", color: "bg-blue-200" },
-                      { name: "Next.js", color: "bg-purple-200" },
-                      { name: "JavaScript", color: "bg-yellow-200" },
-                      { name: "Python", color: "bg-pink-200" },
+                      { name: "PL/SQL", color: "bg-orange-200 dark:bg-orange-400/60" },
+                      { name: ".NET Core", color: "bg-green-200 dark:bg-green-400/60" },
+                      { name: "React", color: "bg-blue-200 dark:bg-blue-400/60" },
+                      { name: "Next.js", color: "bg-purple-200 dark:bg-purple-400/60" },
+                      { name: "JavaScript", color: "bg-yellow-200 dark:bg-yellow-400/60" },
+                      { name: "Python", color: "bg-pink-200 dark:bg-pink-400/60" },
                     ].map((skill, index) => (
                       <span
                         key={skill.name}
-                        className={`${skill.color} text-black px-3 py-2 text-sm font-bold border-2 border-black hover:scale-110 hover:rotate-2 transition-all duration-200 cursor-default`}
+                        className={`${skill.color} text-black dark:text-black px-3 py-2 text-sm font-bold border-2 border-black dark:border-white hover:scale-110 hover:rotate-2 transition-all duration-200 cursor-default`}
                         style={{
                           animationDelay: `${index * 100}ms`,
                           animation: isVisible ? "fadeInUp 0.5s ease-out forwards" : "none",
@@ -138,7 +138,7 @@ export function Skills() {
 
                   <button
                     onClick={() => setIsMobileExpanded(true)}
-                    className="bg-green-400 text-black font-bold px-6 py-3 text-base border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 hover:scale-105"
+                    className="bg-green-400 text-black font-bold px-6 py-3 text-base border-4 border-black dark:border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 hover:scale-105"
                   >
                     🚀 Expand & Load All Skills!
                   </button>
@@ -160,20 +160,20 @@ export function Skills() {
                   {Object.entries(skillsData).map(([categoryName, categoryData], categoryIndex) => (
                     <div
                       key={categoryName}
-                      className={`${categoryData.color} p-4 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-1 hover:-translate-y-1 transition-all duration-300 group`}
+                      className={`${categoryData.color} dark:bg-zinc-900 p-4 border-4 border-black dark:border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] hover:-translate-x-1 hover:-translate-y-1 transition-all duration-300 group`}
                       style={{
                         animationDelay: `${categoryIndex * 100}ms`,
                         animation: "fadeInUp 0.4s ease-out forwards",
                       }}
                     >
-                      <h3 className="text-base font-bold text-black mb-3 group-hover:scale-105 transition-transform duration-300">
+                      <h3 className="text-base font-bold text-black dark:text-white mb-3 group-hover:scale-105 transition-transform duration-300">
                         {categoryName}
                       </h3>
                       <div className="flex flex-wrap gap-1">
                         {categoryData.skills.map((skill, skillIndex) => (
                           <span
                             key={skill.name}
-                            className={`bg-white text-black px-2 py-1 text-xs font-semibold border-2 ${categoryData.borderColor} hover:scale-105 hover:rotate-1 transition-all duration-200 cursor-default flex items-center gap-1`}
+                            className={`bg-white dark:bg-zinc-900 text-black dark:text-white px-2 py-1 text-xs font-semibold border-2 ${categoryData.borderColor} dark:border-white hover:scale-105 hover:rotate-1 transition-all duration-200 cursor-default flex items-center gap-1`}
                             style={{
                               animationDelay: `${categoryIndex * 100 + skillIndex * 50}ms`,
                               animation: "fadeInUp 0.3s ease-out forwards",
@@ -196,18 +196,18 @@ export function Skills() {
             {Object.entries(skillsData).map(([categoryName, categoryData], categoryIndex) => (
               <div
                 key={categoryName}
-                className={`${categoryData.color} p-6 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-1 hover:-translate-y-1 transition-all duration-300 group ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                className={`${categoryData.color} dark:bg-zinc-900 p-6 border-4 border-black dark:border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] hover:-translate-x-1 hover:-translate-y-1 transition-all duration-300 group ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                   }`}
                 style={{ transitionDelay: `${categoryIndex * 150}ms` }}
               >
-                <h3 className="text-xl font-bold text-black mb-4 group-hover:scale-105 transition-transform duration-300">
+                <h3 className="text-xl font-bold text-black dark:text-white mb-4 group-hover:scale-105 transition-transform duration-300">
                   {categoryName}
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {categoryData.skills.map((skill, skillIndex) => (
                     <span
                       key={skill.name}
-                      className={`bg-white text-black px-3 py-1 text-sm font-semibold border-2 ${categoryData.borderColor} hover:scale-105 hover:rotate-1 transition-all duration-200 cursor-default flex items-center gap-1`}
+                      className={`bg-white dark:bg-zinc-900 text-black dark:text-white px-3 py-1 text-sm font-semibold border-2 ${categoryData.borderColor} dark:border-white hover:scale-105 hover:rotate-1 transition-all duration-200 cursor-default flex items-center gap-1`}
                       style={{
                         animationDelay: `${categoryIndex * 150 + skillIndex * 50}ms`,
                         animation: isVisible ? "fadeInUp 0.4s ease-out forwards" : "none",
