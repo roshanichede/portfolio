@@ -3,19 +3,38 @@
 import { useState, useEffect } from "react"
 import { Menu, X, Sun, Moon } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { ScrollReveal } from "@/components/motion/ScrollReveal"
 import { useTheme } from "next-themes"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
+  const [activeSection, setActiveSection] = useState<string>("hero")
   const { theme, setTheme } = useTheme()
 
   useEffect(() => {
+    const sectionIds = ["hero", "about", "skills", "experience", "projects", "contact"]
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
+
+      // Determine which section is currently near the top
+      let current: string = "hero"
+      for (const id of sectionIds) {
+        const el = document.getElementById(id)
+        if (!el) continue
+        const rect = el.getBoundingClientRect()
+        const isInView = rect.top <= 120 && rect.bottom >= 120
+        if (isInView) {
+          current = id
+          break
+        }
+      }
+      setActiveSection(current)
     }
-    window.addEventListener("scroll", handleScroll)
+
+    handleScroll()
+    window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
@@ -25,9 +44,9 @@ export function Header() {
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
-    console.log("Scrolling to section:", sectionId, element)
     if (element) {
       element.scrollIntoView({ behavior: "smooth" })
+      setActiveSection(sectionId)
     }
     setIsMenuOpen(false)
   }
@@ -41,37 +60,46 @@ export function Header() {
       }`}
     >
       <div className="container mx-auto px-4 py-3 lg:py-4">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center">
           <button className="text-xl dark:text-white lg:text-2xl font-black text-black hover:scale-105 transition-transform cursor-pointer" onClick={() => scrollToSection("hero")}>
             PORTFOLIO
           </button>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
-            {["about", "skills", "experience", "projects", "contact"].map((item) => (
-              <Button
-                key={item}
-                onClick={() => scrollToSection(item)}
-                variant="ghost"
-                className="text-black dark:text-white font-bold hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-all duration-200 uppercase hover:scale-105 text-sm lg:text-base border-2 border-black dark:border-white rounded-xl hover:border-white dark:hover:border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]"
-              >
-                {item}
-              </Button>
-            ))}
+          {/* Desktop Navigation centered */}
+          <div className="hidden md:flex flex-1 justify-center">
+            <nav className="flex items-center space-x-1 lg:space-x-2">
+              {["about", "skills", "experience", "projects", "contact"].map((item, idx) => (
+                <ScrollReveal key={item} delay={idx * 0.05}>
+                  <Button
+                    onClick={() => scrollToSection(item)}
+                    variant="ghost"
+                    aria-current={activeSection === item ? "page" : undefined}
+                    className={`text-black dark:text-white transition-all duration-200 uppercase hover:scale-105 text-sm lg:text-base border-2 border-black dark:border-white rounded-xl hover:border-white dark:hover:border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] font-[family-name:var(--font-yusei)] ${
+                      activeSection === item
+                        ? "bg-white text-black dark:bg-zinc-900 dark:text-white ring-2 ring-black dark:ring-white"
+                        : "hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black"
+                    }`}
+                  >
+                    {item}
+                  </Button>
+                </ScrollReveal>
+              ))}
+            </nav>
+          </div>
 
-            {/* Theme Toggle (Desktop) */}
+          {/* Right controls */}
+          <div className="ml-auto flex items-center">
             {isMounted && (
               <Button
                 variant="ghost"
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                 aria-label="Toggle theme"
-                className="ml-2 text-black dark:text-white border-2 border-black dark:border-white rounded-xl hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]"
+                className="hidden md:inline-flex text-black dark:text-white border-2 border-black dark:border-white rounded-xl hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]"
               >
                 {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
               </Button>
             )}
-          </nav>
-
+          </div>
           {/* Mobile Menu Button */}
           <Button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -90,15 +118,20 @@ export function Header() {
         >
           <nav className="container mx-auto px-4 py-4 space-y-2">
             {["about", "skills", "experience", "projects", "contact"].map((item, index) => (
-              <Button
-                key={item}
-                onClick={() => scrollToSection(item)}
-                variant="ghost"
-                className="w-full text-black dark:text-white font-bold hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black uppercase justify-start transition-all duration-200 text-left border-2 border-transparent hover:border-black dark:hover:border-white"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                {item}
-              </Button>
+              <ScrollReveal key={item} delay={index * 0.05}>
+                <Button
+                  onClick={() => scrollToSection(item)}
+                  variant="ghost"
+                  aria-current={activeSection === item ? "page" : undefined}
+                  className={`w-full text-black dark:text-white uppercase justify-start transition-all duration-200 text-left border-2 border-transparent hover:border-black dark:hover:border-white font-[family-name:var(--font-yusei)] ${
+                    activeSection === item
+                      ? "bg-white text-black dark:bg-zinc-900 dark:text-white ring-2 ring-black dark:ring-white"
+                      : "hover:bg-black dark:hover:bg.white hover:text-white dark:hover:text-black"
+                  }`}
+                >
+                  {item}
+                </Button>
+              </ScrollReveal>
             ))}
 
             {/* Theme Toggle (Mobile) */}

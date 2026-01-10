@@ -1,7 +1,9 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { Code, Database, Globe, Wrench, Layers, Link, Settings } from "lucide-react"
+import { ScrollReveal } from "@/components/motion/ScrollReveal"
+import { TextEffect } from "@/components/core/text-effect"
+import { Code, Database, Globe, Wrench, Layers, Link, Settings, Cloud } from "lucide-react"
 
 export function Skills() {
   const [isVisible, setIsVisible] = useState(false)
@@ -26,59 +28,50 @@ export function Skills() {
   }, [])
 
   const skillsData = {
-    "Programming Languages": {
+    "Languages": {
       skills: [
-        { name: "C", icon: <Code className="w-3 h-3 sm:w-4 sm:h-4" /> },
-        { name: "C++", icon: <Code className="w-3 h-3 sm:w-4 sm:h-4" /> },
-        { name: "Java", icon: <Code className="w-3 h-3 sm:w-4 sm:h-4" /> },
-        { name: "C#", icon: <Code className="w-3 h-3 sm:w-4 sm:h-4" /> },
         { name: "Python", icon: <Code className="w-3 h-3 sm:w-4 sm:h-4" /> },
-        { name: "Visual Basic", icon: <Code className="w-3 h-3 sm:w-4 sm:h-4" /> },
+        { name: "JavaScript", icon: <Code className="w-3 h-3 sm:w-4 sm:h-4" /> },
+        { name: "TypeScript", icon: <Code className="w-3 h-3 sm:w-4 sm:h-4" /> },
+        { name: "SQL", icon: <Code className="w-3 h-3 sm:w-4 sm:h-4" /> },
+        { name: "C++", icon: <Code className="w-3 h-3 sm:w-4 sm:h-4" /> },
       ],
       color: "bg-blue-100",
       borderColor: "border-blue-300",
     },
-    "Frameworks & Libraries": {
+    "Frameworks": {
       skills: [
-        { name: ".NET Core", icon: <Layers className="w-3 h-3 sm:w-4 sm:h-4" /> },
-        { name: "AngularJS", icon: <Layers className="w-3 h-3 sm:w-4 sm:h-4" /> },
-        { name: "React", icon: <Layers className="w-3 h-3 sm:w-4 sm:h-4" /> },
+        { name: "Flask", icon: <Layers className="w-3 h-3 sm:w-4 sm:h-4" /> },
+        { name: "Django", icon: <Layers className="w-3 h-3 sm:w-4 sm:h-4" /> },
+        { name: ".NET", icon: <Layers className="w-3 h-3 sm:w-4 sm:h-4" /> },
+        { name: "ASP.NET", icon: <Layers className="w-3 h-3 sm:w-4 sm:h-4" /> },
         { name: "Next.js", icon: <Layers className="w-3 h-3 sm:w-4 sm:h-4" /> },
+        { name: "React", icon: <Layers className="w-3 h-3 sm:w-4 sm:h-4" /> },
+        { name: "Angular", icon: <Layers className="w-3 h-3 sm:w-4 sm:h-4" /> },
       ],
       color: "bg-green-100",
       borderColor: "border-green-300",
     },
-    "Web Development": {
+    "Databases": {
       skills: [
-        { name: "HTML", icon: <Globe className="w-3 h-3 sm:w-4 sm:h-4" /> },
-        { name: "CSS", icon: <Globe className="w-3 h-3 sm:w-4 sm:h-4" /> },
-        { name: "Javascript", icon: <Globe className="w-3 h-3 sm:w-4 sm:h-4" /> },
-        { name: "Web APIs", icon: <Link className="w-3 h-3 sm:w-4 sm:h-4" /> },
-        { name: "Web Services", icon: <Globe className="w-3 h-3 sm:w-4 sm:h-4" /> },
-        { name: "Tailwind CSS", icon: <Globe className="w-3 h-3 sm:w-4 sm:h-4" /> },
-      ],
-      color: "bg-purple-100",
-      borderColor: "border-purple-300",
-    },
-    "Database Platforms & Query Languages": {
-      skills: [
+        { name: "PostgreSQL", icon: <Database className="w-3 h-3 sm:w-4 sm:h-4" /> },
+        { name: "SQL Server", icon: <Database className="w-3 h-3 sm:w-4 sm:h-4" /> },
         { name: "MySQL", icon: <Database className="w-3 h-3 sm:w-4 sm:h-4" /> },
         { name: "Oracle", icon: <Database className="w-3 h-3 sm:w-4 sm:h-4" /> },
-        { name: "PL/SQL", icon: <Database className="w-3 h-3 sm:w-4 sm:h-4" /> },
-        { name: "Supabase", icon: <Database className="w-3 h-3 sm:w-4 sm:h-4" /> },
       ],
       color: "bg-orange-100",
       borderColor: "border-orange-300",
     },
-    "Tools & Platforms": {
+    "Tools & Cloud": {
       skills: [
-        { name: "Visual Studio", icon: <Settings className="w-3 h-3 sm:w-4 sm:h-4" /> },
         { name: "Git", icon: <Wrench className="w-3 h-3 sm:w-4 sm:h-4" /> },
-        { name: "Jira", icon: <Settings className="w-3 h-3 sm:w-4 sm:h-4" /> },
-        { name: "Postman", icon: <Wrench className="w-3 h-3 sm:w-4 sm:h-4" /> },
         { name: "Jenkins", icon: <Settings className="w-3 h-3 sm:w-4 sm:h-4" /> },
-        { name: "Eclipse", icon: <Settings className="w-3 h-3 sm:w-4 sm:h-4" /> },
-        { name: "NetBeans", icon: <Settings className="w-3 h-3 sm:w-4 sm:h-4" /> },
+        { name: "GCP", icon: <Cloud className="w-3 h-3 sm:w-4 sm:h-4" /> },
+        { name: "Nginx", icon: <Settings className="w-3 h-3 sm:w-4 sm:h-4" /> },
+        { name: "Gunicorn", icon: <Settings className="w-3 h-3 sm:w-4 sm:h-4" /> },
+        { name: "Docker", icon: <Wrench className="w-3 h-3 sm:w-4 sm:h-4" /> },
+        { name: "Postman", icon: <Wrench className="w-3 h-3 sm:w-4 sm:h-4" /> },
+        { name: "Jira", icon: <Settings className="w-3 h-3 sm:w-4 sm:h-4" /> },
       ],
       color: "bg-pink-100",
       borderColor: "border-pink-300",
@@ -89,12 +82,13 @@ export function Skills() {
     <section ref={sectionRef} id="skills" className="py-12 lg:py-16 bg-white dark:bg-zinc-950">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          <h2
-            className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-black dark:text-white mb-6 lg:mb-8 text-center transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-              }`}
-          >
-            Skills & Technologies
-          </h2>
+        <div className="flex justify-center">
+          <ScrollReveal>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black text-black dark:text-white mb-6 lg:mb-10 text-center">
+              <TextEffect per="char" preset="rise">Skills & Technologies</TextEffect>
+            </h2>
+          </ScrollReveal>
+          </div>
 
           {/* Mobile Condensed View */}
           <div className="block lg:hidden">
@@ -106,19 +100,19 @@ export function Skills() {
                 <div className="text-center space-y-4">
                   <p className="text-base font-semibold text-gray-800 dark:text-gray-200 leading-relaxed">
                     Here's a byte-sized look at my stack—
-                    <span className="font-bold text-black dark:text-white"> PL/SQL, .NET, C++, Next.js</span>, and more. Want the full
+                    <span className="font-bold text-black dark:text-white"> Python, JavaScript/TypeScript, .NET, Next.js</span>, and more. Want the full
                     gigabyte breakdown?
                   </p>
 
                   {/* Key Skills Preview */}
                   <div className="flex flex-wrap justify-center gap-2 mb-4">
                     {[
-                      { name: "PL/SQL", color: "bg-orange-200 dark:bg-orange-400/60" },
-                      { name: ".NET Core", color: "bg-green-200 dark:bg-green-400/60" },
+                      { name: "Python", color: "bg-pink-200 dark:bg-pink-400/60" },
+                      { name: "JavaScript", color: "bg-yellow-200 dark:bg-yellow-400/60" },
+                      { name: "TypeScript", color: "bg-blue-200 dark:bg-blue-400/60" },
+                      { name: ".NET", color: "bg-green-200 dark:bg-green-400/60" },
                       { name: "React", color: "bg-blue-200 dark:bg-blue-400/60" },
                       { name: "Next.js", color: "bg-purple-200 dark:bg-purple-400/60" },
-                      { name: "JavaScript", color: "bg-yellow-200 dark:bg-yellow-400/60" },
-                      { name: "Python", color: "bg-pink-200 dark:bg-pink-400/60" },
                     ].map((skill, index) => (
                       <span
                         key={skill.name}

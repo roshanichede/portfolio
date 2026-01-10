@@ -1,6 +1,8 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { ScrollReveal } from "@/components/motion/ScrollReveal"
+import { TextEffect } from "@/components/core/text-effect"
 import {
   ExternalLink,
   Award,
@@ -225,12 +227,11 @@ export function Experience() {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2
-              className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-black dark:text-white mb-4 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-                }`}
-            >
-              Professional Experience
-            </h2>
+            <ScrollReveal>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-black dark:text-white mb-10">
+                <TextEffect per="char" preset="rise">Professional Experience</TextEffect>
+              </h2>
+            </ScrollReveal>
           </div>
 
           <div className="space-y-8">

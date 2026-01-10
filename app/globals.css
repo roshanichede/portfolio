@@ -120,6 +120,16 @@
   }
 }
 
+/* Subtle marquee for tech badges/text */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-mask {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -169,4 +179,19 @@ html {
 
 .glitch-shadow:hover {
   animation: glitch-shadow 0.6s ease-in-out;
+}
+
+/* Performance helpers */
+.gpu {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

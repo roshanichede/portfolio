@@ -64,6 +64,7 @@ export function ProjectSelector({ projects, onSelectionChange, loading, onRefres
     return (
         <div className="relative">
             {/* Toggle Button */}
+            {}
             <Button
                 onClick={() => setIsOpen(!isOpen)}
                 className="bg-purple-400 text-black font-bold border-2 border-black hover:bg-purple-500 hover:scale-105 transition-all duration-200"
@@ -71,7 +72,6 @@ export function ProjectSelector({ projects, onSelectionChange, loading, onRefres
                 <Settings className="w-4 h-4 mr-2" />
                 Manage Projects ({selectedProjects.size})
             </Button>
-
             {/* Project Selector Modal */}
             {isOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[200] p-4">
@@ -101,6 +101,8 @@ export function ProjectSelector({ projects, onSelectionChange, loading, onRefres
                                 </Button>
                             </div>
                         </div>
+
+                        
 
                         {/* Search and Actions */}
                         <div className="p-4 border-b-2 border-black">
