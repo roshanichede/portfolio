@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -sS https://api.github.com/repos/roshanichede/ecoquick)",
+      "Bash(python3 -c \"import sys, json; d=json.load\\(sys.stdin\\); print\\('name:', d.get\\('name'\\)\\); print\\('desc:', d.get\\('description'\\)\\); print\\('homepage:', d.get\\('homepage'\\)\\); print\\('lang:', d.get\\('language'\\)\\); print\\('topics:', d.get\\('topics'\\)\\)\")",
+      "Bash(curl -sS https://api.github.com/repos/roshanichede/slide-enhancer)",
+      "Bash(curl -sS https://api.github.com/repos/roshanichede/url-shortener)",
+      "Bash(curl -sS https://api.github.com/repos/roshanichede/ecoquick/languages)",
+      "Bash(curl -sS https://api.github.com/repos/roshanichede/slide-enhancer/languages)",
+      "Bash(curl -sS https://api.github.com/repos/roshanichede/url-shortener/languages)",
+      "Bash(curl -sS \"https://raw.githubusercontent.com/roshanichede/ecoquick/main/README.md\")",
+      "Bash(curl -sS \"https://raw.githubusercontent.com/roshanichede/ecoquick/master/README.md\")",
+      "Bash(curl -sS \"https://raw.githubusercontent.com/roshanichede/slide-enhancer/main/README.md\")",
+      "Bash(curl -sS \"https://raw.githubusercontent.com/roshanichede/slide-enhancer/master/README.md\")",
+      "Bash(curl -sS \"https://raw.githubusercontent.com/roshanichede/url-shortener/main/README.md\")",
+      "Bash(curl -sS \"https://raw.githubusercontent.com/roshanichede/url-shortener/master/README.md\")",
+      "Bash(curl -sS \"https://raw.githubusercontent.com/roshanichede/ecoquick/main/package.json\")",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('deps:', list\\(d.get\\('dependencies',{}\\).keys\\(\\)\\)\\)\")",
+      "Bash(curl -sS \"https://raw.githubusercontent.com/roshanichede/slide-enhancer/main/package.json\")",
+      "Bash(curl -sS \"https://api.github.com/repos/roshanichede/url-shortener/contents\")",
+      "Bash(curl -sS \"https://api.github.com/repos/roshanichede/slide-enhancer/contents\")",
+      "Bash(curl -sS \"https://api.github.com/repos/roshanichede/ecoquick/contents\")",
+      "Bash(curl -sS \"https://raw.githubusercontent.com/roshanichede/slide-enhancer/main/ai-slide-enhancer/package.json\")",
+      "Bash(curl -sS \"https://api.github.com/repos/roshanichede/slide-enhancer/contents/slideenhancer\")",
+      "Bash(curl -sS \"https://api.github.com/repos/roshanichede/url-shortener/contents/urlshortener\")",
+      "Bash(curl -sS \"https://raw.githubusercontent.com/roshanichede/ecoquick/main/CLAUDE.md\")",
+      "Bash(curl -sS \"https://raw.githubusercontent.com/roshanichede/slide-enhancer/main/slideenhancer/package.json\")",
+      "Bash(npx tsc:*)",
+      "WebFetch(domain:www.giuligartner.com)",
+      "Bash(curl -s https://raw.githubusercontent.com/roshanichede/gesture-workspace-controls/main/README.md)",
+      "Bash(curl -s https://api.github.com/repos/roshanichede/gesture-workspace-controls)"
+    ]
+  }
+}

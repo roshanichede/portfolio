@@ -109,7 +109,7 @@ export function Contact() {
                   placeholder="Your Email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="border-2 border-black dark:border_white font-medium placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:ring-0 focus:border-black dark:focus:border_white hover:scale-105 transition-transform duration-200 bg-white dark:bg-zinc-800 text-black dark:text-white"
+                  className="border-2 border-black dark:border-white font-medium placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:ring-0 focus:border-black dark:focus:border-white hover:scale-105 transition-transform duration-200 bg-white dark:bg-zinc-800 text-black dark:text-white"
                   required
                 />
                 <textarea

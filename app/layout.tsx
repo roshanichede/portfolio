@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Poppins, Nunito, Yusei_Magic } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
+import { SmoothScroll } from '@/components/motion/SmoothScroll'
 
 const poppins = Poppins({ 
   subsets: ['latin'],
@@ -22,9 +23,23 @@ const yuseiMagic = Yusei_Magic({
 })
 
 export const metadata: Metadata = {
-  title: 'Roshani Portfolio',
-  description: 'Created with v0',
-  generator: 'v0.dev',
+  title: 'Roshani Chede — Developer & Software Engineer',
+  description:
+    'Portfolio of Roshani Chede — a developer with 4+ years of experience in .NET, PL/SQL, and modern web stacks. Building dependable, creative software.',
+  keywords: ['Roshani Chede', 'Software Engineer', 'Full-Stack Developer', '.NET', 'Next.js', 'PL/SQL', 'Python', 'Portfolio'],
+  authors: [{ name: 'Roshani Chede' }],
+  openGraph: {
+    title: 'Roshani Chede — Developer & Software Engineer',
+    description:
+      'Portfolio of Roshani Chede — 4+ years of experience building software across .NET, PL/SQL, and modern web stacks.',
+    type: 'website',
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Roshani Chede — Developer & Software Engineer',
+    description: 'Portfolio of Roshani Chede — developer and software engineer.',
+  },
 }
 
 export default function RootLayout({
@@ -36,6 +51,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`font-sans ${poppins.variable} ${nunito.variable} ${yuseiMagic.variable}`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <SmoothScroll />
           {children}
         </ThemeProvider>
       </body>

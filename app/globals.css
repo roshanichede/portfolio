@@ -130,6 +130,53 @@
   mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
+@keyframes chaosFloatA {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+  25% {
+    transform: translate3d(30px, -22px, 0) scale(1.08) rotate(12deg);
+  }
+  50% {
+    transform: translate3d(-20px, -38px, 0) scale(0.95) rotate(-10deg);
+  }
+  75% {
+    transform: translate3d(-34px, 16px, 0) scale(1.1) rotate(8deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+}
+
+@keyframes chaosFloatB {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+  20% {
+    transform: translate3d(-26px, 18px, 0) scale(1.1) rotate(-14deg);
+  }
+  45% {
+    transform: translate3d(22px, -26px, 0) scale(0.92) rotate(9deg);
+  }
+  70% {
+    transform: translate3d(34px, 12px, 0) scale(1.06) rotate(-8deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+}
+
+@keyframes spinWarp {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.07); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes neonPulse {
+  0%, 100% { opacity: 0.35; filter: blur(0px); }
+  50% { opacity: 0.75; filter: blur(1px); }
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -153,6 +200,22 @@ html {
 .animate-wave {
   animation: wave 2s ease-in-out infinite;
   transform-origin: 70% 70%;
+}
+
+.animate-chaos-a {
+  animation: chaosFloatA 11s ease-in-out infinite;
+}
+
+.animate-chaos-b {
+  animation: chaosFloatB 13s ease-in-out infinite;
+}
+
+.animate-spin-warp {
+  animation: spinWarp 22s linear infinite;
+}
+
+.animate-neon-pulse {
+  animation: neonPulse 2.8s ease-in-out infinite;
 }
 
 @keyframes float {
@@ -186,6 +249,178 @@ html {
   will-change: transform, opacity;
   transform: translateZ(0);
   backface-visibility: hidden;
+}
+
+/* ============================================================
+   SIMPLE MODE — minimal, clean aesthetic (Dia-inspired)
+   Activated by <html data-style="simple">
+   Strips brutalist borders/shadows, softens palette,
+   rounds corners, lightens typography.
+   ============================================================ */
+
+html[data-style="simple"] {
+  --simple-ring: 0 1px 2px rgba(16, 24, 40, 0.05), 0 1px 3px rgba(16, 24, 40, 0.06);
+  --simple-ring-lg: 0 4px 12px rgba(16, 24, 40, 0.06), 0 1px 3px rgba(16, 24, 40, 0.04);
+  --simple-border: rgba(16, 24, 40, 0.08);
+  --simple-border-strong: rgba(16, 24, 40, 0.12);
+  background: #fbfaf7;
+}
+
+html[data-style="simple"].dark {
+  --simple-border: rgba(255, 255, 255, 0.08);
+  --simple-border-strong: rgba(255, 255, 255, 0.14);
+  --simple-ring: 0 1px 2px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.3);
+  --simple-ring-lg: 0 4px 12px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.3);
+  background: #0f0f11;
+}
+
+html[data-style="simple"] body {
+  font-family: var(--font-poppins), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* Kill all brutalist offset shadows */
+html[data-style="simple"] [class*="shadow-["] {
+  box-shadow: var(--simple-ring) !important;
+}
+html[data-style="simple"] [class*="shadow-["]:hover {
+  box-shadow: var(--simple-ring-lg) !important;
+  transform: none !important;
+}
+
+/* Neutralize heavy borders (4px / 6px / thick) → hairline */
+html[data-style="simple"] .border-4,
+html[data-style="simple"] .border-6,
+html[data-style="simple"] [class*="border-["] {
+  border-width: 1px !important;
+  border-color: var(--simple-border) !important;
+}
+html[data-style="simple"] .border-2 {
+  border-width: 1px !important;
+  border-color: var(--simple-border) !important;
+}
+html[data-style="simple"] .border-b-4 {
+  border-bottom-width: 1px !important;
+  border-color: var(--simple-border) !important;
+}
+html[data-style="simple"] .border-black,
+html[data-style="simple"] .dark\:border-white,
+html[data-style="simple"] .border-white {
+  border-color: var(--simple-border) !important;
+}
+
+/* Rounded everything */
+html[data-style="simple"] button,
+html[data-style="simple"] a,
+html[data-style="simple"] .border,
+html[data-style="simple"] .border-2,
+html[data-style="simple"] .border-4,
+html[data-style="simple"] [class*="border-["],
+html[data-style="simple"] [class*="shadow-["] {
+  border-radius: 14px !important;
+}
+html[data-style="simple"] header,
+html[data-style="simple"] section {
+  border-radius: 0 !important;
+}
+
+/* Soften / strip loud gradient backgrounds */
+html[data-style="simple"] .bg-gradient-to-r,
+html[data-style="simple"] .bg-gradient-to-br,
+html[data-style="simple"] .bg-gradient-to-l,
+html[data-style="simple"] .bg-gradient-to-tr {
+  background-image: none !important;
+  background-color: transparent !important;
+}
+
+html[data-style="simple"] section {
+  background: #fbfaf7 !important;
+}
+html[data-style="simple"].dark section {
+  background: #0f0f11 !important;
+}
+
+/* Header */
+html[data-style="simple"] header {
+  background: rgba(251, 250, 247, 0.75) !important;
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+}
+html[data-style="simple"].dark header {
+  background: rgba(15, 15, 17, 0.7) !important;
+}
+
+/* Lighten heavy font weights */
+html[data-style="simple"] .font-black {
+  font-weight: 600 !important;
+  letter-spacing: -0.035em;
+}
+html[data-style="simple"] .font-bold {
+  font-weight: 500 !important;
+}
+
+/* Primary CTA: replace green/blue gradient with soft dark pill */
+html[data-style="simple"] .bg-gradient-to-r.from-green-400,
+html[data-style="simple"] .from-green-400 {
+  background: #111214 !important;
+  color: #fafaf7 !important;
+}
+html[data-style="simple"].dark .from-green-400 {
+  background: #fafaf7 !important;
+  color: #111214 !important;
+}
+html[data-style="simple"] .from-green-400 * {
+  color: inherit !important;
+}
+
+/* Mute the bright decorative squares/circles around the photo */
+html[data-style="simple"] .bg-blue-400,
+html[data-style="simple"] .bg-green-400,
+html[data-style="simple"] .bg-pink-400,
+html[data-style="simple"] .bg-purple-400 {
+  background-color: #efece5 !important;
+}
+html[data-style="simple"].dark .bg-blue-400,
+html[data-style="simple"].dark .bg-green-400,
+html[data-style="simple"].dark .bg-pink-400,
+html[data-style="simple"].dark .bg-purple-400 {
+  background-color: #1c1c1f !important;
+}
+html[data-style="simple"] .bg-blue-400 svg,
+html[data-style="simple"] .bg-green-400 svg,
+html[data-style="simple"] .bg-pink-400 svg,
+html[data-style="simple"] .bg-purple-400 svg {
+  color: #6b7280 !important;
+}
+
+/* Remove hero chaos/warped circles and grid */
+html[data-style="simple"] .animate-chaos-a,
+html[data-style="simple"] .animate-chaos-b,
+html[data-style="simple"] .animate-spin-warp,
+html[data-style="simple"] .animate-neon-pulse {
+  display: none !important;
+}
+html[data-style="simple"] [style*="linear-gradient(rgba(0,0,0,0.35)"] {
+  opacity: 0 !important;
+}
+
+/* Photo card: clean minimal frame */
+html[data-style="simple"] img {
+  border-radius: 12px;
+}
+
+/* Chip / badge soften */
+html[data-style="simple"] .bg-green-200,
+html[data-style="simple"] .bg-blue-200,
+html[data-style="simple"] .bg-purple-200,
+html[data-style="simple"] .bg-yellow-200,
+html[data-style="simple"] .bg-pink-200 {
+  background-color: #f1efe9 !important;
+}
+
+/* Marquee fade */
+html[data-style="simple"] .animate-marquee {
+  opacity: 0.5;
 }
 
 @media (prefers-reduced-motion: reduce) {

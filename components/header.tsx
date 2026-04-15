@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Menu, X, Sun, Moon } from "lucide-react"
+import { Menu, X, Sun, Moon, Feather, Shapes } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ScrollReveal } from "@/components/motion/ScrollReveal"
 import { useTheme } from "next-themes"
@@ -11,7 +11,27 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
   const [activeSection, setActiveSection] = useState<string>("hero")
+  const [styleMode, setStyleMode] = useState<"brutal" | "simple">("brutal")
   const { theme, setTheme } = useTheme()
+
+  useEffect(() => {
+    const saved = (typeof window !== "undefined" && localStorage.getItem("style-mode")) as
+      | "brutal"
+      | "simple"
+      | null
+    const mode = saved === "simple" ? "simple" : "brutal"
+    setStyleMode(mode)
+    document.documentElement.dataset.style = mode
+  }, [])
+
+  const toggleStyleMode = () => {
+    const next = styleMode === "simple" ? "brutal" : "simple"
+    setStyleMode(next)
+    document.documentElement.dataset.style = next
+    try {
+      localStorage.setItem("style-mode", next)
+    } catch {}
+  }
 
   useEffect(() => {
     const sectionIds = ["hero", "about", "skills", "experience", "projects", "contact"]
@@ -88,16 +108,30 @@ export function Header() {
           </div>
 
           {/* Right controls */}
-          <div className="ml-auto flex items-center">
+          <div className="ml-auto flex items-center gap-2">
             {isMounted && (
-              <Button
-                variant="ghost"
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                aria-label="Toggle theme"
-                className="hidden md:inline-flex text-black dark:text-white border-2 border-black dark:border-white rounded-xl hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]"
-              >
-                {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
-              </Button>
+              <>
+                <Button
+                  variant="ghost"
+                  onClick={toggleStyleMode}
+                  aria-label={styleMode === "simple" ? "Switch to bold style" : "Love simplicity?"}
+                  title={styleMode === "simple" ? "Back to bold" : "Love simplicity?"}
+                  className="hidden md:inline-flex items-center gap-2 text-black dark:text-white border-2 border-black dark:border-white rounded-xl hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]"
+                >
+                  {styleMode === "simple" ? <Shapes size={18} /> : <Feather size={18} />}
+                  <span className="text-xs font-semibold hidden lg:inline">
+                    {styleMode === "simple" ? "Bold" : "Simple"}
+                  </span>
+                </Button>
+                <Button
+                  variant="ghost"
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                  aria-label="Toggle theme"
+                  className="hidden md:inline-flex text-black dark:text-white border-2 border-black dark:border-white rounded-xl hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]"
+                >
+                  {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+                </Button>
+              </>
             )}
           </div>
           {/* Mobile Menu Button */}
@@ -126,7 +160,7 @@ export function Header() {
                   className={`w-full text-black dark:text-white uppercase justify-start transition-all duration-200 text-left border-2 border-transparent hover:border-black dark:hover:border-white font-[family-name:var(--font-yusei)] ${
                     activeSection === item
                       ? "bg-white text-black dark:bg-zinc-900 dark:text-white ring-2 ring-black dark:ring-white"
-                      : "hover:bg-black dark:hover:bg.white hover:text-white dark:hover:text-black"
+                      : "hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black"
                   }`}
                 >
                   {item}
@@ -134,13 +168,29 @@ export function Header() {
               </ScrollReveal>
             ))}
 
+            {/* Style Toggle (Mobile) */}
+            {isMounted && (
+              <Button
+                variant="ghost"
+                onClick={toggleStyleMode}
+                aria-label="Toggle style"
+                className="w-full text-black dark:text-white font-bold hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black uppercase justify-start transition-all duration-200 text-left border-2 border-transparent hover:border-black dark:hover:border-white"
+              >
+                {styleMode === "simple" ? (
+                  <div className="flex items-center gap-2"><Shapes size={18} /> Bold mode</div>
+                ) : (
+                  <div className="flex items-center gap-2"><Feather size={18} /> Love simplicity?</div>
+                )}
+              </Button>
+            )}
+
             {/* Theme Toggle (Mobile) */}
             {isMounted && (
               <Button
                 variant="ghost"
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                 aria-label="Toggle theme"
-                className="w-full text-black dark:text-white font-bold hover:bg-black dark:hover:bg.White hover:text-white dark:hover:text-black uppercase justify-start transition-all duration-200 text-left border-2 border-transparent hover:border-black dark:hover:border-white"
+                className="w-full text-black dark:text-white font-bold hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black uppercase justify-start transition-all duration-200 text-left border-2 border-transparent hover:border-black dark:hover:border-white"
               >
                 {theme === "dark" ? (
                   <div className="flex items-center gap-2"><Sun size={18} /> Light mode</div>

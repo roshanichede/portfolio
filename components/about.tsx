@@ -3,15 +3,6 @@
 import { useEffect, useRef, useState } from "react"
 import { ScrollReveal } from "@/components/motion/ScrollReveal"
 import { TextEffect } from "@/components/core/text-effect"
-import { MapPin, Camera, Music, Code, Sparkles, BadgeCheck, Lightbulb, Rocket, FileText, Trophy, Wrench, CalendarClock } from "lucide-react"
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
 
 export function About() {
   const [isVisible, setIsVisible] = useState(false)
@@ -38,14 +29,7 @@ export function About() {
     <section
       ref={sectionRef}
       id="about"
-      className="py-20 lg:py-24 relative overflow-hidden"
-      style={{
-        backgroundImage: `
-          linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px)
-        `,
-        backgroundSize: "20px 20px",
-      }}
+      className="py-20 lg:py-24 relative overflow-hidden bg-[linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[length:20px_20px]"
     >
       {/* Graph Grid Background Pattern */}
       <div
@@ -58,6 +42,32 @@ export function About() {
             linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px)
           `,
           backgroundSize: "100px 100px, 100px 100px, 20px 20px, 20px 20px",
+        }}
+      />
+      <div
+        className="absolute inset-0 opacity-0 dark:opacity-15"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(255,255,255,0.1) 2px, transparent 2px),
+            linear-gradient(90deg, rgba(255,255,255,0.1) 2px, transparent 2px),
+            linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)
+          `,
+          backgroundSize: "100px 100px, 100px 100px, 20px 20px, 20px 20px",
+        }}
+      />
+      <div
+        className="absolute inset-0 opacity-10 dark:opacity-0"
+        style={{
+          backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.16) 1px, transparent 1px)",
+          backgroundSize: "20px 20px",
+        }}
+      />
+      <div
+        className="absolute inset-0 opacity-0 dark:opacity-20"
+        style={{
+          backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.18) 1px, transparent 1px)",
+          backgroundSize: "20px 20px",
         }}
       />
 
@@ -95,121 +105,9 @@ export function About() {
                   <p>
                     Beyond code, I love exploring new technologies, discovering new places, and designing purely for the joy of creativity.
                   </p>
-                  {/* <div className="mt-16 max-w-3xl mx-auto">
-                    <h3 className="text-3xl font-bold mb-6 text-center">Beyond the Code</h3>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                      <div className="flex flex-col items-center text-center p-4 border rounded-lg">
-                        <MapPin className="w-8 h-8 mb-2" />
-                        <span className="font-semibold">Travel & Explore</span>
-                        <p className="text-sm text-gray-600">Hunting for hidden gems in every city.</p>
-                      </div>
-                      <div className="flex flex-col items-center text-center p-4 border rounded-lg">
-                        <Camera className="w-8 h-8 mb-2" />
-                        <span className="font-semibold">Photography</span>
-                        <p className="text-sm text-gray-600">Capturing moments, one frame at a time.</p>
-                      </div>
-                      <div className="flex flex-col items-center text-center p-4 border rounded-lg">
-                        <Music className="w-8 h-8 mb-2" />
-                        <span className="font-semibold">Music Lover</span>
-                        <p className="text-sm text-gray-600">Vinyl collector & live‐gig enthusiast.</p>
-                      </div>
-                      <div className="flex flex-col items-center text-center p-4 border rounded-lg">
-                        <Code className="w-8 h-8 mb-2" />
-                        <span className="font-semibold">Side Projects</span>
-                        <p className="text-sm text-gray-600">Building fun little apps in my spare time.</p>
-                      </div>
-                    </div>
-                  </div> */}
                 </div>
               </div>
             </div>
-          </div>
-          {/* Popup actions */}
-          <div className="max-w-4xl mx-auto mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 justify-items-center">
-            {/* How I Solve Problems */}
-            {/* <Dialog>
-              <DialogTrigger asChild>
-                <button className="w-full bg-white/80 dark:bg-zinc-900/60 border-2 border-black dark:border-white text-sm font-semibold px-4 py-2.5 hover:-translate-y-0.5 transition-all duration-200 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] flex items-center justify-center gap-2 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black bg-gradient-to-b from-transparent to-transparent hover:from-black/5 dark:hover:from-white/10">
-                  <Wrench className="w-4 h-4" /> How I Solve Problems
-                </button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-xl border-4 border-black dark:border-white">
-                <DialogHeader>
-                  <DialogTitle className="flex items-center gap-2"><Wrench className="w-5 h-5" /> My approach</DialogTitle>
-                  <DialogDescription>
-                    Understand business context → break down into deliverables → pick the simplest reliable solution. I lean on metrics, logs, and clear PRs; prefer readable code over cleverness and ship iteratively.
-                  </DialogDescription>
-                </DialogHeader>
-              </DialogContent>
-            </Dialog> */}
-
-            {/* Currently Exploring */}
-            {/* <Dialog>
-              <DialogTrigger asChild>
-                <button className="w-full bg-white/80 dark:bg-zinc-900/60 border-2 border-black dark:border-white text-sm font-semibold px-4 py-2.5 hover:-translate-y-0.5 transition-all duration-200 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] flex items-center justify-center gap-2 hover:bg-black hover:text-white dark:hover:bg.white dark:hover:text-black bg-gradient-to-b from-transparent to-transparent hover:from-black/5 dark:hover:from-white/10">
-                  <Rocket className="w-4 h-4" /> Currently Exploring
-                </button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-xl border-4 border-black dark:border-white">
-                <DialogHeader>
-                  <DialogTitle className="flex items-center gap-2"><Rocket className="w-5 h-5" /> On my radar</DialogTitle>
-                  <DialogDescription>
-                    Advanced TypeScript patterns, React Server Components, performance budgets, Playwright testing, and a deeper dive into Postgres + Prisma.
-                  </DialogDescription>
-                </DialogHeader>
-              </DialogContent>
-            </Dialog> */}
-
-            {/* Something Fun About Me */}
-            {/* <Dialog>
-              <DialogTrigger asChild>
-                <button className="w-full bg-white/80 dark:bg-zinc-900/60 border-2 border-black dark:border-white text-sm font-semibold px-4 py-2.5 hover:-translate-y-0.5 transition-all duration-200 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] flex items-center justify-center gap-2 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black bg-gradient-to-b from-transparent to-transparent hover:from-black/5 dark:hover:from-white/10">
-                  <Sparkles className="w-4 h-4" /> Something Fun About Me
-                </button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-xl border-4 border-black dark:border-white">
-                <DialogHeader>
-                  <DialogTitle className="flex items-center gap-2"><Sparkles className="w-5 h-5" /> Fun bit</DialogTitle>
-                  <DialogDescription>
-                    I love exploring new places and design for fun; that curiosity often inspires UI ideas I bring back to projects.
-                  </DialogDescription>
-                </DialogHeader>
-              </DialogContent>
-            </Dialog> */}
-
-            {/* What Inspires Me */}
-            {/* <Dialog>
-              <DialogTrigger asChild>
-                <button className="w-full bg-white/80 dark:bg-zinc-900/60 border-2 border-black dark:border-white text-sm font-semibold px-4 py-2.5 hover:-translate-y-0.5 transition-all duration-200 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] flex items-center justify-center gap-2 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black bg-gradient-to-b from-transparent to-transparent hover:from-black/5 dark:hover:from-white/10">
-                  <Lightbulb className="w-4 h-4" /> What Inspires Me
-                </button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-xl border-4 border-black dark:border-white">
-                <DialogHeader>
-                  <DialogTitle className="flex items-center gap-2"><Lightbulb className="w-5 h-5" /> Inspiration</DialogTitle>
-                  <DialogDescription>
-                    Clean product storytelling, thoughtful motion, and teams who value clarity over complexity. I enjoy shipping small, useful improvements consistently.
-                  </DialogDescription>
-                </DialogHeader>
-              </DialogContent>
-            </Dialog> */}
-
-            {/* Outside Work */}
-            {/* <Dialog>
-              <DialogTrigger asChild>
-                <button className="w-full bg-white/80 dark:bg-zinc-900/60 border-2 border-black dark:border-white text-sm font-semibold px-4 py-2.5 hover:-translate-y-0.5 transition-all duration-200 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] flex items-center justify-center gap-2 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black bg-gradient-to-b from-transparent to-transparent hover:from-black/5 dark:hover:from-white/10">
-                  <MapPin className="w-4 h-4" /> Outside Work
-                </button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-xl border-4 border-black dark:border-white">
-                <DialogHeader>
-                  <DialogTitle className="flex items-center gap-2"><MapPin className="w-5 h-5" /> Off-hours</DialogTitle>
-                  <DialogDescription>
-                    Traveling, photography, and learning by building small interfaces—these keep me energized and creative.
-                  </DialogDescription>
-                </DialogHeader>
-              </DialogContent>
-            </Dialog> */}
           </div>
         </div>
       </div>
