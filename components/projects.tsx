@@ -16,7 +16,7 @@ type Project = {
   image?: string
   icon: React.ReactNode
   gradient: string
-  status?: "Live" | "In Progress" | "Archived"
+  status?: "Live" | "" | ""
 }
 
 const projects: Project[] = [
@@ -53,7 +53,7 @@ const projects: Project[] = [
     github: "https://github.com/roshanichede/gesture-workspace-controls",
     icon: <Hand className="w-10 h-10 sm:w-12 sm:h-12" strokeWidth={2.5} />,
     gradient: "from-orange-300 via-amber-300 to-yellow-300",
-    status: "In Progress",
+    status: "",
   },
   {
     name: "URL Shortener",
@@ -64,7 +64,7 @@ const projects: Project[] = [
     github: "https://github.com/roshanichede/url-shortener",
     icon: <LinkIcon className="w-10 h-10 sm:w-12 sm:h-12" strokeWidth={2.5} />,
     gradient: "from-blue-300 via-sky-300 to-cyan-300",
-    status: "Archived",
+    status: "",
   },
 ]
 
@@ -123,7 +123,7 @@ export function Projects() {
                       className={`absolute top-3 right-3 px-2 py-1 text-[10px] font-black uppercase tracking-wider border-2 border-black ${
                         project.status === "Live"
                           ? "bg-green-400 text-black"
-                          : project.status === "In Progress"
+                          : project.status === ""
                           ? "bg-yellow-400 text-black"
                           : "bg-gray-200 text-black"
                       }`}

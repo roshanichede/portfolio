@@ -156,14 +156,14 @@ export function Contact() {
               >
                 <Linkedin size={28} />
               </Button>
-              {/* <Button
+              <Button
                 variant="ghost"
                 size="lg"
-                className="text-black hover:bg-black hover:text-white p-3 border-2 border-black hover:scale-110 transition-all duration-200"
-                onClick={() => window.open("https://github.com/yourusername", "_blank")}
+                className="text-black dark:text-white hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black p-3 border-2 border-black dark:border-white hover:scale-110 transition-all duration-200"
+                onClick={() => window.open("https://github.com/roshanichede", "_blank")}
               >
                 <Github size={28} />
-              </Button> */}
+              </Button>
               <Button
                 variant="ghost"
                 size="lg"

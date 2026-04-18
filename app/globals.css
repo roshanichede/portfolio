@@ -418,6 +418,36 @@ html[data-style="simple"] .bg-pink-200 {
   background-color: #f1efe9 !important;
 }
 
+/* Pastel category cards (skills) */
+html[data-style="simple"] .bg-blue-100,
+html[data-style="simple"] .bg-green-100,
+html[data-style="simple"] .bg-orange-100,
+html[data-style="simple"] .bg-pink-100,
+html[data-style="simple"] .bg-purple-100,
+html[data-style="simple"] .bg-yellow-100,
+html[data-style="simple"] .bg-rose-100,
+html[data-style="simple"] .bg-amber-100 {
+  background-color: #f5f3ed !important;
+}
+html[data-style="simple"].dark .bg-blue-100,
+html[data-style="simple"].dark .bg-green-100,
+html[data-style="simple"].dark .bg-orange-100,
+html[data-style="simple"].dark .bg-pink-100,
+html[data-style="simple"].dark .bg-purple-100,
+html[data-style="simple"].dark .bg-yellow-100,
+html[data-style="simple"].dark .bg-rose-100,
+html[data-style="simple"].dark .bg-amber-100 {
+  background-color: #16171a !important;
+}
+/* Per-category border tints → uniform hairline */
+html[data-style="simple"] .border-blue-300,
+html[data-style="simple"] .border-green-300,
+html[data-style="simple"] .border-orange-300,
+html[data-style="simple"] .border-pink-300,
+html[data-style="simple"] .border-purple-300 {
+  border-color: var(--simple-border) !important;
+}
+
 /* Marquee fade */
 html[data-style="simple"] .animate-marquee {
   opacity: 0.5;
