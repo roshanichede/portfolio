@@ -26,6 +26,8 @@ type Project = {
   live?: string;
   code?: string;
   video?: string;
+  // screenshots: the first is the tile cover, the rest show in the case study
+  shots?: string[];
   art: "money" | "slides" | "terminal" | "gesture";
 };
 
@@ -49,6 +51,7 @@ const projects: Project[] = [
     later: ["Open-banking sync", "Budgets and alerts", "Mobile app", "Shared households"],
     tech: ["Next.js", "FastAPI", "Postgres", "Auth.js", "Claude API"],
     live: "https://money-map-ruddy.vercel.app",
+    shots: ["/shots/moneymap.jpg"],
     code: "https://github.com/roshanichede/money-map",
     art: "money",
   },
@@ -68,7 +71,7 @@ const projects: Project[] = [
     ],
     outcome: "Graded Distinction as my MSc dissertation at the University of Leicester.",
     tech: ["Next.js", "Python", "Flask", "Supabase", "OpenAI", "Gemini"],
-    live: "https://slide-enhancer.vercel.app",
+    shots: ["/shots/slides-grid.jpg", "/shots/slides-home.jpg", "/shots/slides-enhance.jpg"],
     code: "https://github.com/roshanichede/slide-enhancer",
     art: "slides",
   },
@@ -150,6 +153,12 @@ const jobs = [
     org: "Tata Consultancy Services",
     role: "Systems engineer, insurance (BFSI)",
     tags: ["Requirements and grooming", "Prioritisation", "Stakeholder coordination"],
+    awards: [
+      { name: "Star of the Month, twice", href: "#media" },
+      { name: "Star Team Award", href: "/media/tcs-star-team.pdf" },
+      { name: "On the Spot Team Award", href: "/media/tcs-on-the-spot-team.pdf" },
+      { name: "Special Initiative Award, twice", href: "#media" },
+    ] as Award[],
     line: "Four years on an insurance platform managing 30M+ policies, owning a module end to end and leading a browser migration.",
     points: [
       "Owned the Accounts module end to end on an insurance platform managing 30M+ policies, turning business-analyst documents into development tasks and refining requirements in grooming so releases matched business needs. Cut query time by 60% and defect recurrence by 70% at 99.9% uptime.",
@@ -198,7 +207,26 @@ const education = [
   { title: "BE Computer Engineering", place: "Goa University", when: "Aug 2016 to Aug 2020", note: "Gold medallist" },
 ];
 
-const awards = ["Star of the Month at TCS, twice", "Star Team Award, TCS", "On the Spot Team Award, TCS", "Special Initiative Award at TCS, twice", "University gold medal, Goa"];
+// media section: files live in public/media. `thumb` is an image preview (for a PDF, its first page as a .jpg)
+type MediaItem = { kind: "award" | "cert" | "photo"; title: string; caption?: string; src: string; thumb: string };
+const media: MediaItem[] = [
+  { kind: "award", title: "Star of the Month", caption: "TCS · for taking on the Corporate team role through personnel changes", src: "/media/tcs-star-of-the-month-corporate.pdf", thumb: "/media/tcs-star-of-the-month-corporate.jpg" },
+  { kind: "award", title: "On the Spot Team Award", caption: "TCS · for closing almost a year of Chrome compatibility issues", src: "/media/tcs-on-the-spot-team.pdf", thumb: "/media/tcs-on-the-spot-team.jpg" },
+  { kind: "award", title: "Star Team Award", caption: "TCS · nominated by Sachin Kale", src: "/media/tcs-star-team.pdf", thumb: "/media/tcs-star-team.jpg" },
+  { kind: "award", title: "Star of the Month", caption: "TCS · farewell recognition from the Corporate team", src: "/media/tcs-star-of-the-month-farewell.pdf", thumb: "/media/tcs-star-of-the-month-farewell.jpg" },
+  { kind: "award", title: "Special Initiative Award", caption: "TCS InfoSecurity Fest 2023 · winner, KBC Quiz 3", src: "/media/tcs-special-initiative-2023.pdf", thumb: "/media/tcs-special-initiative-2023.jpg" },
+  { kind: "award", title: "Special Initiative Award", caption: "TCS InfoSecurity Fest 2022 · winner, Guess Me", src: "/media/tcs-special-initiative-2022.pdf", thumb: "/media/tcs-special-initiative-2022.jpg" },
+  { kind: "cert", title: "Internship certificate", caption: "Creative Capsule, 2018 · student form in AngularJS", src: "/media/creative-capsule-internship.jpg", thumb: "/media/creative-capsule-internship.jpg" },
+];
+
+const mediaTabs = [
+  { id: "all", label: "All" },
+  { id: "award", label: "Awards" },
+  { id: "cert", label: "Certificates" },
+  { id: "photo", label: "Photos" },
+] as const;
+
+type Award = { name: string; href?: string };
 
 const skills = [
   { group: "Languages", items: ["Python", "TypeScript", "JavaScript", "C#", "SQL"] },
@@ -250,7 +278,13 @@ function CopyEmail({ large = false }: { large?: boolean }) {
   );
 }
 
-function Art({ kind, video }: { kind: Project["art"]; video?: string }) {
+function Art({ kind, video, shot }: { kind: Project["art"]; video?: string; shot?: string }) {
+  if (shot)
+    return (
+      <div className="art art-shot">
+        <Image src={shot} alt="" fill sizes="(max-width: 760px) 100vw, 760px" />
+      </div>
+    );
   if (video)
     return (
       <div className="art art-video">
@@ -365,7 +399,7 @@ function Sheet({ index, onClose, onGo }: { index: number | null; onClose: () => 
             <AnimatePresence mode="wait">
               <motion.div key={index} initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.45, ease: OUT }}>
                 <div className="sheet-art">
-                  <Art kind={p.art} video={p.video} />
+                  <Art kind={p.art} video={p.video} shot={p.shots?.[0]} />
                 </div>
                 <p className="kicker">
                   {p.kind} · {p.year}
@@ -386,6 +420,15 @@ function Sheet({ index, onClose, onGo }: { index: number | null; onClose: () => 
                   <span className="case-label">What it does</span>
                   <p>{p.what}</p>
                 </div>
+                {p.shots && p.shots.length > 1 && (
+                  <div className="gallery">
+                    {p.shots.slice(1).map((src) => (
+                      <a key={src} href={src} target="_blank" rel="noreferrer" className="gallery-item">
+                        <Image src={src} alt={`${p.name} screenshot`} fill sizes="300px" />
+                      </a>
+                    ))}
+                  </div>
+                )}
                 <div className="case">
                   <span className="case-label">Key decisions and trade-offs</span>
                   <ol className="decisions">
@@ -476,6 +519,19 @@ function Job({ job, i }: { job: (typeof jobs)[number]; i: number }) {
           </motion.div>
         )}
       </AnimatePresence>
+      {"awards" in job && job.awards && (
+        <div className="awards">
+          {job.awards.map((a) =>
+            a.href ? (
+              <a key={a.name} href={a.href} {...(a.href.startsWith("#") ? {} : { target: "_blank", rel: "noreferrer" })}>
+                ✦ {a.name} <i aria-hidden="true">↗</i>
+              </a>
+            ) : (
+              <span key={a.name}>✦ {a.name}</span>
+            ),
+          )}
+        </div>
+      )}
       <div className="chrono-foot">
         <div className="skill-tags">
           {job.tags.map((t) => (
@@ -794,7 +850,7 @@ function ProjectCard({ p, i, onOpen }: { p: Project; i: number; onOpen: (i: numb
       viewport={{ once: true, margin: "0px 0px -10% 0px" }}
       transition={{ duration: 0.8, delay: (i % 2) * 0.08, ease: OUT }}
     >
-      <Art kind={p.art} video={p.video} />
+      <Art kind={p.art} video={p.video} shot={p.shots?.[0]} />
       <span className="pcard-label">
         <b>{p.name}</b>
         <span>{p.short}</span>
@@ -916,11 +972,6 @@ function Education() {
           </Reveal>
         ))}
       </ul>
-      <Reveal className="awards">
-        {awards.map((a) => (
-          <span key={a}>✦ {a}</span>
-        ))}
-      </Reveal>
     </div>
   );
 }
@@ -954,6 +1005,78 @@ function Stack() {
         <Marquee items={all.slice(half)} reverse />
       </Reveal>
     </div>
+  );
+}
+
+function Media() {
+  const [tab, setTab] = useState<(typeof mediaTabs)[number]["id"]>("all");
+  const [photo, setPhoto] = useState<MediaItem | null>(null);
+  useEffect(() => {
+    if (!photo) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setPhoto(null);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [photo]);
+  if (media.length === 0) return null;
+  const tabs = mediaTabs.filter((t) => t.id === "all" || media.some((m) => m.kind === t.id));
+  const shown = tab === "all" ? media : media.filter((m) => m.kind === tab);
+  return (
+    <section className="sec" id="media">
+      <Head title="Media" count={String(media.length).padStart(2, "0")} note="Certificates and moments" />
+      {tabs.length > 2 && (
+        <div className="media-tabs" role="tablist">
+          {tabs.map((t) => (
+            <button key={t.id} role="tab" aria-selected={tab === t.id} className={tab === t.id ? "on" : ""} onClick={() => setTab(t.id)}>
+              {tab === t.id && <motion.span layoutId="media-tab" className="media-tab-pill" transition={{ type: "spring", stiffness: 380, damping: 32 }} />}
+              <span>{t.label}</span>
+            </button>
+          ))}
+        </div>
+      )}
+      <motion.div layout className="media-grid">
+        <AnimatePresence mode="popLayout">
+          {shown.map((m) => {
+            const inner = (
+              <>
+                <span className="media-thumb">
+                  <Image src={m.thumb} alt="" fill sizes="(max-width: 760px) 50vw, 250px" />
+                </span>
+                <span className="media-body">
+                  <b>{m.title}</b>
+                  {m.caption && <span>{m.caption}</span>}
+                </span>
+              </>
+            );
+            return (
+              <motion.div key={m.src} layout initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.94 }} transition={{ duration: 0.4, ease: OUT }}>
+                {m.kind === "photo" ? (
+                  <button className={`media-card media-${m.kind}`} onClick={() => setPhoto(m)}>
+                    {inner}
+                  </button>
+                ) : (
+                  <a className={`media-card media-${m.kind}`} href={m.src} target="_blank" rel="noreferrer">
+                    {inner}
+                  </a>
+                )}
+              </motion.div>
+            );
+          })}
+        </AnimatePresence>
+      </motion.div>
+      <AnimatePresence>
+        {photo && (
+          <motion.div className="lightbox" onClick={() => setPhoto(null)} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} role="dialog" aria-label={photo.title}>
+            <motion.figure initial={{ scale: 0.94, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.94, y: 20 }} transition={{ duration: 0.4, ease: OUT }}>
+              <img src={photo.src} alt={photo.title} />
+              <figcaption>
+                <b>{photo.title}</b>
+                {photo.caption && <span>{photo.caption}</span>}
+              </figcaption>
+            </motion.figure>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
   );
 }
 
@@ -1002,6 +1125,7 @@ export default function Home() {
           <Work onOpen={go} />
           <UkChapter />
           <About />
+          <Media />
           <Contact />
         </div>
       </main>
