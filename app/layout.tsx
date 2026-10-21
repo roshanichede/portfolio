@@ -1,60 +1,31 @@
-import type { Metadata } from 'next'
-import { Poppins, Nunito, Yusei_Magic } from 'next/font/google'
-import './globals.css'
-import { ThemeProvider } from '@/components/theme-provider'
-import { SmoothScroll } from '@/components/motion/SmoothScroll'
-
-const poppins = Poppins({ 
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-poppins',
-})
-
-const nunito = Nunito({ 
-  subsets: ['latin'],
-  weight: ['400', '600', '700'],
-  variable: '--font-nunito',
-})
-
-const yuseiMagic = Yusei_Magic({
-  weight: '400',
-  subsets: ['latin'],
-  variable: '--font-yusei',
-})
+import type { Metadata, Viewport } from "next";
+import "./globals.css";
 
 export const metadata: Metadata = {
-  title: 'Roshani Chede — Developer & Software Engineer',
+  title: "Roshani Chede, Product & Engineering",
   description:
-    'Portfolio of Roshani Chede — a developer with 4+ years of experience in .NET, PL/SQL, and modern web stacks. Building dependable, creative software.',
-  keywords: ['Roshani Chede', 'Software Engineer', 'Full-Stack Developer', '.NET', 'Next.js', 'PL/SQL', 'Python', 'Portfolio'],
-  authors: [{ name: 'Roshani Chede' }],
-  openGraph: {
-    title: 'Roshani Chede — Developer & Software Engineer',
-    description:
-      'Portfolio of Roshani Chede — 4+ years of experience building software across .NET, PL/SQL, and modern web stacks.',
-    type: 'website',
-    locale: 'en_US',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Roshani Chede — Developer & Software Engineer',
-    description: 'Portfolio of Roshani Chede — developer and software engineer.',
-  },
-}
+    "Roshani Chede is an engineer moving into product management, based in London. Four years at TCS on large insurance systems, an MSc with Distinction from Leicester, and a habit of starting with the customer’s real need.",
+  openGraph: { title: "Roshani Chede, Product & Engineering", description: "An engineer moving into product. I start with the customer’s real need, then ship what solves it.", type: "website" },
+};
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export const viewport: Viewport = { themeColor: "#fdfdfb" };
+
+// runs before paint so a saved or system dark theme doesn't flash light first
+const THEME = `try{var t=localStorage.getItem("theme");if(t!=="dark"&&t!=="light")t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.dataset.theme=t}catch(e){}`;
+
+const FONTS =
+  "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=Inter:wght@400..600&display=swap";
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`font-sans ${poppins.variable} ${nunito.variable} ${yuseiMagic.variable}`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <SmoothScroll />
-          {children}
-        </ThemeProvider>
-      </body>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME }} />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link rel="stylesheet" href={FONTS} />
+      </head>
+      <body>{children}</body>
     </html>
-  )
+  );
 }
