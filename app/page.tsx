@@ -210,6 +210,8 @@ const education = [
 // media section: files live in public/media. `thumb` is an image preview (for a PDF, its first page as a .jpg)
 type MediaItem = { kind: "award" | "cert" | "photo"; title: string; caption?: string; src: string; thumb: string };
 const media: MediaItem[] = [
+  { kind: "photo", title: "MSc graduation, University of Leicester", caption: "Advanced Computer Science · Distinction", src: "/media/leicester-graduation.jpg", thumb: "/media/leicester-graduation.jpg" },
+  { kind: "photo", title: "#LeicesterGrad", caption: "University of Leicester campus, graduation day", src: "/media/leicester-graduation-campus.jpg", thumb: "/media/leicester-graduation-campus.jpg" },
   { kind: "photo", title: "Gold Medal, Computer Engineering", caption: "Goa University Convocation · batch of 2020", src: "/media/goa-university-gold-medal.jpg", thumb: "/media/goa-university-gold-medal.jpg" },
   { kind: "award", title: "Star of the Month", caption: "TCS · for taking on the Corporate team role through personnel changes", src: "/media/tcs-star-of-the-month-corporate.pdf", thumb: "/media/tcs-star-of-the-month-corporate.jpg" },
   { kind: "award", title: "On the Spot Team Award", caption: "TCS · for closing almost a year of Chrome compatibility issues", src: "/media/tcs-on-the-spot-team.pdf", thumb: "/media/tcs-on-the-spot-team.jpg" },
@@ -965,7 +967,9 @@ function Education() {
               <div>
                 <h3>{e.title}</h3>
                 <span className="chrono-org">
-                  {e.place} {e.note === "Gold medallist" ? <a href="#media" className="badge-link"><em>{e.note} ↓</em></a> : <em>{e.note}</em>}
+                  {e.place} <a href="#media" className="badge-link">
+                    <em>{e.note} ↓</em>
+                  </a>
                 </span>
               </div>
               <span className="chrono-when">{e.when}</span>
