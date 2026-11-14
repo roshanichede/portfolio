@@ -22,16 +22,44 @@ type Project = {
   decisions: string[];
   outcome?: string;
   later?: string[];
+  // what I'd do differently, for projects that taught a hard lesson
+  learned?: string[];
   tech: string[];
   live?: string;
   code?: string;
   video?: string;
   // screenshots: the first is the tile cover, the rest show in the case study
   shots?: string[];
-  art: "money" | "slides" | "terminal" | "gesture";
+  art: "money" | "slides" | "terminal" | "gesture" | "delivery";
 };
 
 const projects: Project[] = [
+  {
+    name: "EcoQuick",
+    kind: "Delivery startup · freelance product engineer",
+    year: "2026",
+    short: "Took a local courier from phone bookings to an online product in 3–4 months",
+    why: "EcoQuick offered same-day parcel delivery within about 8–10 miles of Kingston upon Thames. Every booking came by word of mouth and was handled by hand, which capped growth and gave customers no way to find, price or book the service themselves.",
+    who: "Two sides of a marketplace: customers sending parcels locally (the plan was local businesses first, but individuals came first because businesses were slow to trust a new courier), and drivers fulfilling the jobs.",
+    what: "Customers sign up, see an upfront price, book and pay online. New jobs appear live to drivers, who claim one at a time and update the status through to delivery.",
+    decisions: [
+      "Upfront dynamic pricing, based on distance, parcel size and weight. Price uncertainty is a top reason people abandon a courier booking, so customers see the cost before they commit.",
+      "Driver job claiming instead of manual dispatch. Drivers pick their own jobs, one at a time, and claims are atomic so two drivers can never take the same order.",
+      "Deferred driver sign-ups. With 4 trusted drivers onboarded by hand, self-serve onboarding was out of V1 scope so the customer side could ship sooner.",
+      "Live tracking vs. cost. Tracking was proposed and agreed, but free-tier maps couldn’t deliver it reliably, so it didn’t ship. Customers lost a key trust signal in exchange for a lower budget.",
+      "One shared order lifecycle (pending → assigned → picked up → in transit → delivered), so the founder, drivers and code always meant the same thing by each status.",
+    ],
+    outcome: "About 20 phone enquiries over 5 months turned into 15 customer sign-ups and 5–7 completed online deliveries, with 4 drivers and 1–2 business customers. Without an acquisition budget or a clear go-to-market plan, growth stalled and the business was paused.",
+    learned: [
+      "Validate demand before building. A booking form plus manual dispatch would have tested willingness to pay in weeks, not months.",
+      "Commit to one target customer. Splitting effort between businesses and individuals diluted both.",
+      "Close the loop on both sides. Drivers were still alerted by phone; push notifications mattered more than extra customer features.",
+      "Protect the trust features. For a new courier, tracking is what makes a stranger hand over a parcel.",
+      "Agree success metrics and tracking on day one. We never tracked site visits, so it was hard to see what was working.",
+    ],
+    tech: ["Two-sided marketplace", "MVP scoping", "Stripe", "Pricing"],
+    art: "delivery",
+  },
   {
     name: "MoneyMap",
     kind: "Personal finance app",
@@ -131,7 +159,7 @@ const jobs = [
     tags: ["0 to 1 launch", "Two-sided marketplace", "Feature proposals"],
     line: "An eco-courier startup. I took their delivery marketplace from idea to a live product with the founder.",
     points: [
-      "Took a two-sided delivery marketplace from idea to a live product with the founder, replacing a fully manual booking and dispatch process with online booking, Stripe payments and self-serve job claiming. Now onboarding the first customers and drivers.",
+      "Took a two-sided delivery marketplace from idea to a live product with the founder, replacing a fully manual booking and dispatch process with online booking, Stripe payments and self-serve job claiming. Reached 15 customer sign-ups and 4 drivers before the business was paused.",
       "Proposed upfront dynamic pricing, live order tracking and a driver job-claim system, so customers knew the cost and status of every order and drivers could choose their own jobs. The founder adopted all three as core features.",
       "Modelled the order lifecycle as one shared state model (pending → assigned → picked up → in transit → delivered) to end confusion between the founder, drivers and code over what each status meant, giving every feature a single reference.",
       "Spotted that two drivers could accept the same job and made job claims atomic before launch, removing a double-booking risk that would have hurt customer trust.",
@@ -305,6 +333,18 @@ function Art({ kind, video, shot }: { kind: Project["art"]; video?: string; shot
         <span className="chip b">Food 21%</span>
       </div>
     );
+  if (kind === "delivery")
+    return (
+      <div className="art art-delivery">
+        <svg viewBox="0 0 300 160" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M30 128 C 90 128, 90 60, 150 70 S 220 36, 270 34" />
+        </svg>
+        <i className="pin a" />
+        <i className="pin b" />
+        <span className="chip a">Job claimed</span>
+        <span className="chip b">Delivered ✓</span>
+      </div>
+    );
   if (kind === "slides")
     return (
       <div className="art art-slides">
@@ -446,6 +486,16 @@ function Sheet({ index, onClose, onGo }: { index: number | null; onClose: () => 
                   <div className="case case-outcome">
                     <span className="case-label">Outcome</span>
                     <p>{p.outcome}</p>
+                  </div>
+                )}
+                {p.learned && (
+                  <div className="case">
+                    <span className="case-label">What I learned</span>
+                    <ol className="decisions">
+                      {p.learned.map((l) => (
+                        <li key={l}>{l}</li>
+                      ))}
+                    </ol>
                   </div>
                 )}
                 {p.later && (
