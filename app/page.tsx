@@ -156,6 +156,7 @@ const jobs = [
     when: "Apr 2026 to now",
     org: "EcoQuick",
     role: "Freelance product engineer",
+    highlight: ["0 → 1 launch", "15 customer sign-ups", "3 features adopted"],
     tags: ["0 to 1 launch", "Two-sided marketplace", "Feature proposals"],
     line: "An eco-courier startup. I took their delivery marketplace from idea to a live product with the founder.",
     points: [
@@ -169,6 +170,7 @@ const jobs = [
     when: "Feb to Mar 2026",
     org: "Samko Holdings",
     role: "Product and data consultant, freelance",
+    highlight: ["5 people’s manual reporting automated", "Live KPI dashboard"],
     tags: ["User interviews", "Process automation", "KPI dashboards"],
     line: "Leadership interviews showed month-end reporting was always late. I automated it and gave them one place to track operations.",
     points: [
@@ -180,6 +182,7 @@ const jobs = [
     when: "Oct 2020 to Aug 2024",
     org: "Tata Consultancy Services",
     role: "Systems engineer, insurance (BFSI)",
+    highlight: ["30M+ policies", "400+ defects triaged", "60% faster queries"],
     tags: ["Requirements and grooming", "Prioritisation", "Stakeholder coordination"],
     awards: [
       { name: "Star of the Month, twice", href: "#media" },
@@ -269,8 +272,8 @@ const skills = [
 
 const stats = [
   { value: 4, suffix: "+", label: "Years shipping software" },
-  { value: 30, suffix: "M+", label: "Policies on the platform where I owned a module" },
-  { value: 400, suffix: "+", label: "Defects triaged by user impact in one migration" },
+  { value: 30, suffix: "M+", label: "Policies on the platform I worked on" },
+  { value: 400, suffix: "+", label: "Defects triaged in one migration" },
 ];
 
 // how each project tile sits in the mosaic, in the same order as `projects`
@@ -540,8 +543,8 @@ function Sheet({ index, onClose, onGo }: { index: number | null; onClose: () => 
 
 function Job({ job, i }: { job: (typeof jobs)[number]; i: number }) {
   const [open, setOpen] = useState(false);
-  const shown = job.points.slice(0, 2);
-  const rest = job.points.slice(2);
+  const shown: string[] = [];
+  const rest = job.points;
   return (
     <motion.li className={`chrono${open ? " open" : ""}`} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "0px 0px -10% 0px" }} transition={{ duration: 0.7, delay: i * 0.05, ease: OUT }}>
       <div className="chrono-top">
@@ -552,6 +555,13 @@ function Job({ job, i }: { job: (typeof jobs)[number]; i: number }) {
         <span className="chrono-when">{job.when}</span>
       </div>
       <p className="chrono-line">{job.line}</p>
+      {"highlight" in job && job.highlight && (
+        <div className="highlights">
+          {job.highlight.map((h) => (
+            <span key={h}>{h}</span>
+          ))}
+        </div>
+      )}
       {shown.length > 0 && (
         <ul className="impact">
           {shown.map((pt) => (
@@ -593,7 +603,7 @@ function Job({ job, i }: { job: (typeof jobs)[number]; i: number }) {
         </div>
         {rest.length > 0 && (
           <button className="chrono-more" onClick={() => setOpen((o) => !o)} aria-expanded={open}>
-            {open ? "Less" : `${rest.length} more`} <span className="plus" aria-hidden="true" />
+            {open ? "Less" : "Details"} <span className="plus" aria-hidden="true" />
           </button>
         )}
       </div>
@@ -825,6 +835,11 @@ function Hero() {
           <p className="hero-title two-tone">
             I’m Roshani Chede, an engineer moving into product <span>I start with the customer’s real need, then ship what solves it</span>
           </p>
+          <ul className="hero-proof" aria-label="Highlights">
+            <li><b>4+ yrs</b> engineering at TCS</li>
+            <li><b>0 → 1</b> startup launch</li>
+            <li><b>MSc</b> Distinction, Leicester</li>
+          </ul>
           <nav className="hero-links" aria-label="Links">
             <a href={CV} target="_blank" rel="noreferrer">
               Download CV <span>↗</span>
@@ -971,9 +986,7 @@ function UkChapter() {
       <Head title="My UK chapter" note="How I learned to understand customers" />
       <Reveal className="prose">
         <p>
-          Moving to the UK for my master’s meant a new country, new customers and new ways of working. Alongside my studies I worked on the shop floor, behind the counter and eventually ran
-          shifts. I had a lot to learn, and I learned it fast: how people here shop, what good service looks like, and how to lead a team I’d only just met. These jobs shaped how I understand
-          customers and their needs more than any course did.
+          Alongside my master’s I worked on the shop floor, behind the counter and eventually ran shifts. These jobs taught me more about customers than any course did.
         </p>
       </Reveal>
       <div className="lessons">
