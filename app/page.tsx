@@ -1173,6 +1173,7 @@ function Contact() {
       <footer className="footer">
         <span>© 2026 Roshani Chede</span>
         <span>London, UK</span>
+        <span className="footer-note">This site uses PostHog analytics to see how visitors use it (pages, time spent, approximate location and IP address).</span>
       </footer>
     </section>
   );
