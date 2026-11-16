@@ -16,6 +16,11 @@ try {
     posthog.register({ source }); // this visit
     posthog.register_once({ first_source: source }); // first visit ever
     posthog.setPersonProperties({ last_source: source }, { first_source: source });
+    // Remove the tag from the address bar so visitors see a clean URL
+    params.delete("ref");
+    for (const k of [...params.keys()]) if (k.startsWith("utm_")) params.delete(k);
+    const q = params.toString();
+    window.history.replaceState(window.history.state, "", window.location.pathname + (q ? `?${q}` : "") + window.location.hash);
   }
 
   // Which sections did they actually look at, and for how long?
